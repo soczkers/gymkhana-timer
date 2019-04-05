@@ -1,13 +1,13 @@
 import time
 import requests
 import RPi.GPIO as GPIO
-TARGET="http://localhost:9090"
-TARGET="http://requestbin.fullcontact.com/1blz63q1"
-
+TARGET = "http://localhost:9090"
+TARGET = "http://requestbin.fullcontact.com/1blz63q1"
+SENSOR = {4:"start", 17:"meta"}
 GPIO.setmode(GPIO.BCM)
 
 def my_callback(channel):
-    payload = {'channel': channel, 'time': time.time()}
+    payload = {'channel': SENSOR[channel], 'time': time.time()}
     print(requests.post(TARGET, data=payload))
 
 for i in [4,17]:
