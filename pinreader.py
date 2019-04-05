@@ -8,7 +8,9 @@ GPIO.setmode(GPIO.BCM)
 
 def my_callback(channel):
     payload = {'channel': SENSOR[channel], 'time': time.time()}
+    print("=========================")
     print(requests.post(TARGET, data=payload).text)
+    print("^^=======================")
 
 for i in [4,17]:
     GPIO.setup(i, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
